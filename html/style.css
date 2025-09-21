@@ -1,0 +1,288 @@
+/* ================================================
+   Fivemate Teams - HUD Styles
+   ================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: transparent;
+    overflow: hidden;
+}
+
+.clan-hud {
+    position: fixed;
+    top: 30vh;
+    left: 2vw;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    padding: 15px;
+    min-width: 250px;
+    max-width: 350px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.clan-hud.hidden {
+    opacity: 0;
+    transform: translateX(-100%);
+    pointer-events: none;
+}
+
+.clan-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.clan-header h3 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.clan-members {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.member-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 4px solid;
+    transition: all 0.2s ease;
+}
+
+.member-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.member-name {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.member-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    opacity: 0.9;
+}
+
+.member-role {
+    color: #b8b8b8;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.member-stats {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.member-distance {
+    color: #87CEEB;
+    font-weight: 500;
+}
+
+.member-health {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.health-bar {
+    width: 40px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.health-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+
+.health-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.health-text {
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Colores de vida */
+.health-high { background: linear-gradient(90deg, #4CAF50, #66BB6A); }
+.health-medium { background: linear-gradient(90deg, #FF9800, #FFB74D); }
+.health-low { background: linear-gradient(90deg, #F44336, #EF5350); }
+.health-critical { background: linear-gradient(90deg, #B71C1C, #D32F2F); animation: pulse 1s infinite; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Colores de roles */
+.role-leader { border-left-color: #FF6B6B; }
+.role-sublider { border-left-color: #4ECDC4; }
+.role-member { border-left-color: #45B7D1; }
+
+/* Estilos especiales para HUD persistente */
+.member-header {
+    background: rgba(255, 215, 0, 0.15);
+    border-left-color: #FFD700;
+    border-width: 2px;
+}
+
+.member-header .clan-title {
+    font-size: 15px;
+    color: #FFD700;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.member-self {
+    background: rgba(76, 175, 80, 0.15);
+    border-left-color: #4CAF50;
+    border-width: 2px;
+}
+
+.member-self .member-name {
+    color: #4CAF50;
+    text-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+.member-info {
+    background: rgba(136, 136, 136, 0.1);
+    border-left-color: #888888;
+    opacity: 0.7;
+}
+
+.info-text {
+    color: #CCCCCC;
+    font-style: italic;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Animaciones de entrada */
+.member-item {
+    animation: slideIn 0.3s ease forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Efectos responsive */
+@media (max-width: 1024px) {
+    .clan-hud {
+        min-width: 220px;
+        max-width: 300px;
+        padding: 12px;
+    }
+    
+    .member-name {
+        font-size: 13px;
+    }
+    
+    .member-info {
+        font-size: 10px;
+    }
+}
+
+/* Efectos de glow para roles importantes */
+.role-leader .member-name {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.role-sublider .member-name {
+    color: #4ECDC4;
+    text-shadow: 0 0 8px rgba(78, 205, 196, 0.4);
+}
+
+/* Indicador de estado online */
+.member-item::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
+    animation: onlinePulse 2s infinite;
+}
+
+@keyframes onlinePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Scrollbar personalizado para muchos miembros */
+.clan-members {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.clan-members::-webkit-scrollbar {
+    width: 4px;
+}
+
+.clan-members::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.clan-members::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.clan-members::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
