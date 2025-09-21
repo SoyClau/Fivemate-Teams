@@ -20,7 +20,8 @@ shared_scripts {
 
 -- Cliente
 client_scripts {
-    'client/client.lua'
+    'client/client.lua',
+    'client/blips.lua'
 }
 
 -- Servidor

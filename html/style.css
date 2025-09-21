@@ -18,13 +18,13 @@ body {
     position: fixed;
     top: 30vh;
     left: 2vw;
-    background: rgba(0, 0, 0, 0.85);
+    /* background: rgba(0, 0, 0, 0.85); */
     border-radius: 12px;
     padding: 15px;
     min-width: 250px;
     max-width: 350px;
     border: 2px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 }
@@ -244,24 +244,6 @@ body {
     text-shadow: 0 0 8px rgba(78, 205, 196, 0.4);
 }
 
-/* Indicador de estado online */
-.member-item::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 8px;
-    height: 8px;
-    background: #4CAF50;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
-    animation: onlinePulse 2s infinite;
-}
-
-@keyframes onlinePulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
 
 /* Scrollbar personalizado para muchos miembros */
 .clan-members {
